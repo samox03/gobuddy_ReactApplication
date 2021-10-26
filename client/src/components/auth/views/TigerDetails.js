@@ -9,10 +9,12 @@ import NavbarBuddy from '../../navigation/NavbarBuddy';
 
 export default class TigerDetails extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+
+  state = {
+    loading: true,
+    tiger: {}
+  };
+
 
 
   componentDidMount() {
@@ -25,7 +27,10 @@ export default class TigerDetails extends Component {
     axios.get(`/api/user/tigerslist/${params.id}`)
       .then(responseFromApi => {
         const choosenTiger = responseFromApi.data;
-        this.setState(choosenTiger)
+        this.setState({
+          loading: false,
+          tiger: choosenTiger
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -34,26 +39,29 @@ export default class TigerDetails extends Component {
 
 
   render() {
+    if (this.state.loading) {
+      return <div>Loading...</div>
+    }
     return (
       <div>
 
-        <NavbarBuddy userInSession={this.state.loggedInUser} />
+        {/* <NavbarBuddy userInSession={this.state.loggedInUser} /> */}
 
         <div className="main-content-box">
           <div className="grid">
             <div className="g-col-6">
               <div className="box-wrapper">
 
-                <h3>Profile of { this.state.username }</h3>
-                <h4><strong>Topic:</strong> { this.state.choiceOfAction }</h4>
+                <h3>Profile of {this.state.username}</h3>
+                <h4><strong>Topic:</strong> {this.state.choiceOfAction}</h4>
                 <div className="tigerDetails-wrapper">
                   <div>
                     <strong>Short Infos:</strong>
-                    <p>{ this.state.profileInput.tigerIntro }</p>
+                    <p>{this.state.profileInput.tigerIntro}</p>
                   </div>
                   <div>
                     <strong>Looking for:</strong>
-                    {this.state.profileInput.helpDef }
+                    {this.state.profileInput.helpDef}
                     <br />
                   </div>
                 </div>

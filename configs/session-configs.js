@@ -18,7 +18,7 @@ module.exports = app => {
       secret: process.env.SESS_SECRET,
       resave: false,
       saveUninitialized: true,
-      cookie: { maxAge: 600000 }, // 60 * 1000 ms === 1 min
+      cookie: { maxAge: 6000000 }, // 60 * 1000 ms === 1 min
           
           //OLD VERSION: [_doesnt work anymore_]
           // store: new MongoStore({

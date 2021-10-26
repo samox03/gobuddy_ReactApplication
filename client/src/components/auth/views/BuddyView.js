@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import NavbarBuddy from '../../navigation/NavbarBuddy';
+//import NavbarBuddy from '../../navigation/NavbarBuddy';
 import axios from 'axios'
 import TigerDetails from './TigerDetails';
+
 
 export default class BuddyView extends Component {
 
@@ -22,15 +23,19 @@ export default class BuddyView extends Component {
   //here I choose all tigers, thats wrong...
 
   componentDidMount() {
-    axios.get('/api/user/buddyView').then((allTigers) => {
+    axios.get('/api/user/buddyView').then((response) => {
       this.setState({
         loading: false,
-        tigers: allTigers.data
+        tigers: response.data
       })
     })
   }
 
   render() {
+    console.log('response tigers:', this.state.tigers)
+    if(this.state.loading){
+      return(<div>Loading</div>)
+    }
     return (
       <div>
         {/* <NavbarBuddy userInSession={this.state.loggedInUser} /> */}
@@ -43,7 +48,8 @@ export default class BuddyView extends Component {
                 <div className="box-wrapper">
                   {this.state.tigers.map((tiger) => {
                     return (<div key={tiger._id}>
-                      <Link to={`/tigerslist/${tiger._id}`} component={TigerDetails}>
+                
+                      <Link to={`/tigerslist/${tiger._id}`} >
                         <h5>{tiger.username}
                         </h5>
                         <h6><strong>City:</strong>

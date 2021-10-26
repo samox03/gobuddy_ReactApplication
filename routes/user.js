@@ -110,15 +110,17 @@ router.get('/buddyView', (req, res) => {
         return e.email !== req.session.currentUser.email
       })
       console.log("TigersFromSameCity", allUsersExceptMe);
-      res.json("Tigers from same city:", allUsersExceptMe)
+      res.json(allUsersExceptMe)
+      
 
-      //last line: its a try...
     
       // res.render('users/buddyView', {
       //   userInSession: req.session.currentUser,
       //   users: allUsersExceptMe
       // });
     })
+    // .then(
+    //   res.json(allUsersExceptMe))
 
   }
 });
