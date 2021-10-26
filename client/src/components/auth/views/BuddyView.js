@@ -33,7 +33,7 @@ export default class BuddyView extends Component {
   render() {
     return (
       <div>
-        <NavbarBuddy userInSession={this.state.loggedInUser} />
+        {/* <NavbarBuddy userInSession={this.state.loggedInUser} /> */}
 
         <div className="main-content-box">
           <h3>People around you in need:</h3>

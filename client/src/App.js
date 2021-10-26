@@ -61,7 +61,7 @@ class App extends React.Component {
           <Route exact path='/about' component={AboutUs}></Route>
 
         </Switch>
-        <Footer></Footer>
+        <Footer logInTheUser={this.updateTheUser}></Footer>
       </div>
     );
   }

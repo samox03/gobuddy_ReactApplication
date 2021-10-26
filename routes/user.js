@@ -104,12 +104,16 @@ router.get('/buddyView', (req, res) => {
     res.json({ errorMessage: 'We are sorry, you re just able to see this if you are logged in' })
   }
   else {
-    User.find({ city: req.session.currentUser.city, usertype: 'inNeed' }).then(users => {
+    User.find({ city: req.session.currentUser.city, usertype: 'inNeed' })
+    .then(users => {
       let allUsersExceptMe = users.filter(e => {
         return e.email !== req.session.currentUser.email
       })
-      console.log("users", users)
+      console.log("TigersFromSameCity", allUsersExceptMe);
+      res.json("Tigers from same city:", allUsersExceptMe)
 
+      //last line: its a try...
+    
       // res.render('users/buddyView', {
       //   userInSession: req.session.currentUser,
       //   users: allUsersExceptMe
