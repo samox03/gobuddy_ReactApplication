@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 
@@ -9,8 +8,8 @@ class LogoutButton extends React.Component {
 
   submitHandler = () => {
     axios.post('/api/user/logout').then(() => {
-      //withRouter aka  high order component allows to redirect as without there is no access to the route from here
-      //for checking check the props...
+      //withRouter as a  'high order component' allows redirecing. Without this feature there is no access to the routing from here.
+      //check the props of the component in the browser to see the difference. After the import of withRouter there ar additional props available in the component. E.g. history.push()
       this.props.history.push("/")
       this.props.logInTheUser(null)
     }

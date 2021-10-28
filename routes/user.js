@@ -80,9 +80,9 @@ router.post("/signup/buddy", (req, res, next) => {
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500)
-        .json({
-          errorMessage: error.message
-        });
+          .json({
+            errorMessage: error.message
+          });
       } else if (error.code === 11000) {
         res.status(500)
           .json({
@@ -105,25 +105,31 @@ router.get('/buddyView', (req, res) => {
   }
   else {
     User.find({ city: req.session.currentUser.city, usertype: 'inNeed' })
-    .then(users => {
-      let allUsersExceptMe = users.filter(e => {
-        return e.email !== req.session.currentUser.email
+      .then(users => {
+        let allUsersExceptMe = users.filter(e => {
+          return e.email !== req.session.currentUser.email
+        })
+        console.log("TigersFromSameCity", allUsersExceptMe);
+        res.json(allUsersExceptMe)
       })
-      console.log("TigersFromSameCity", allUsersExceptMe);
-      res.json(allUsersExceptMe)
-      
-
-    
-      // res.render('users/buddyView', {
-      //   userInSession: req.session.currentUser,
-      //   users: allUsersExceptMe
-      // });
-    })
-    // .then(
-    //   res.json(allUsersExceptMe))
-
   }
 });
+
+
+//buddy can check on specific tiger details:
+router.get('/tigerslist/:id', (req, res) => {
+  if (!req.session.currentUser) {
+    res.json({ errorMessage: 'We are sorry, you re just able to see this if you are logged in' })
+  }
+  else {
+    User.findById(req.params.id).then(response => {
+      res.status(200).json(response);
+    })
+      .catch(err => {
+        res.json(err);
+      })
+  }
+})
 
 
 
@@ -215,7 +221,7 @@ router.post("/signup/tiger", (req, res, next) => {
 //user profile route
 router.get('/tigerView', (req, res) => {
   if (!req.session.currentUser) {
-    res.json({errorMessage: 'We are sorry, you re just able to see this if you are logged in'})
+    res.json({ errorMessage: 'We are sorry, you re just able to see this if you are logged in' })
   }
   else {
     User.findById(req.session.currentUser._id).then((user) => {
@@ -266,7 +272,7 @@ router.post('/login', (req, res, next) => {
         res.json({ errorMessage: 'Email is not registered. Try with other email.' });
         return;
       } else if (bcrypt.compareSync(password, user.passwordHash)) {
-       
+
         //******* SAVE THE USER IN THE SESSION ********//
 
         ////////////////////////////////
@@ -290,17 +296,17 @@ router.post('/login', (req, res, next) => {
 router.post('/logout', (req, res) => {
   req.session.destroy();
   // req.session.destroy(req.sessionID);
-  res.json({message:"logout worked"});
+  res.json({ message: "logout worked" });
 });
 
 
 router.get('/checkuser', (req, res, next) => {
   if (req.session.currentUser) {
     User.findById(req.session.currentUser._id).then((foundUser) => {
-       res.json({ userDoc: foundUser });
+      res.json({ userDoc: foundUser });
     })
   } else {
-    res.json({ userDoc: null});
+    res.json({ userDoc: null });
   }
 })
 

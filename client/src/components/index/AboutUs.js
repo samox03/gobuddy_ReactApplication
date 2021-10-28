@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import NavbarFrontpage from '../navigation/NavbarFrontpage'
+
 
 export default class AboutUs extends Component {
   render() {
     return (
       <div className="AboutContent">
+      <NavbarFrontpage />
       <h1>BLABLABLABLABLABLABLA</h1>
         <p> We love to connect, we love to share, we wish to work against social inequiality</p>
         <p>We are an open platform for tigers looking for some advises or an allyship on their current path and buddies that already went these paths or are experienced in other ways.</p>

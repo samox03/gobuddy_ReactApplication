@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import NavbarFrontpage from './NavbarFrontpage'
+
 
 const NavbarBuddy = () => {
 
@@ -13,7 +15,7 @@ const NavbarBuddy = () => {
           <Link to="/auth/buddyView" className="homeLink navLink" style={{ textDecoration: 'none' }}>
             <h2>Welcome, {this.props.userInSession.username} !</h2> </Link>
         </div>
-        <div className="NavLinks">
+        <div className="nav-link-wrapper">
           <ul>
 
             {/* <li><Link to="/interact/mailbox">Mailbox</Link> className="mailboxLink navLink" style={{ textDecoration: 'none' }</li>*/}
@@ -32,7 +34,13 @@ const NavbarBuddy = () => {
       </nav >)
   }
 
-  else { <nav> <p>Still no logged in user, sorry!</p> </nav> }
+  else {
+    return (
+      <nav> <p>Still no logged in user, sorry!</p>
+        <NavbarFrontpage></NavbarFrontpage>
+      </nav>
+    )
+  }
 }
 
 export default NavbarBuddy;

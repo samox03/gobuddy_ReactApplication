@@ -17,8 +17,6 @@ axios.get('/api/user/checkuser').then(res => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-}).catch(err => {
-  alert('backend not running or /checkuser route not defined !')
 })
 
 

@@ -2,9 +2,6 @@
   text-align: center;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 40px;
-
-
 }
 
 .App-logo {
@@ -46,22 +43,19 @@ a {
   justify-content: center;
 }
 
-.header,
-.welcometext {
-  font-size: 16px;
-}
-
 .navbar {
   text-decoration: none;
   color: #e6c843;
   text-align: flex-end;
 }
 
-#navbarUser {
+.nav-style {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #fdef73;
+  padding: 10px
 }
 
 .logoHeader{
@@ -71,11 +65,13 @@ a {
   justify-content: center;
 }
 
-.navbarUserWrapper {
+.nav-link-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  width: 50%
+
 }
 
 .nav-wrapper-right{
@@ -148,6 +144,11 @@ h4{
   text-align: start;
   line-height: 23px;
   padding: 5px 0px;
+}
+
+.content-body{
+  margin: 15px 20px;
+  padding: 5px 20px
 }
 
 #startpage {
@@ -451,10 +452,6 @@ input[type="checkbox"] {
   flex-direction: column;
 }
 
-.main-content-box{
-  margin: 15px 20px;
-  padding: 10px
-}
 
 #footer {
   font-size: 11px;

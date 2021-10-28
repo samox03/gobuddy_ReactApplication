@@ -54,72 +54,76 @@ class SignupTiger extends React.Component {
 
   render() {
     return (
-      <div className="App">
-            <NavbarFrontpage />
-        <section className="welcomeText">
-          <h2>Register to find buddy near you</h2>
-          <h3>First of all, congratulations that you decided to ask for help. We know
-            this is not easy, so you can be proud of yourself.  Fill out the form below,
-            so you can get access to the network of helping hands around you. </h3>
-        </section>
+      <div >
 
-        <section className="userDetails">
-          <div className="persDetails">
+        <NavbarFrontpage />
 
-            {/* <form > */}
-            <label>Username
-              <input type='text' name='username' placeholder='Choose a username' value={this.state.username} onChange={this.changeHandler} />
-            </label>
-            <label>Email adress
-              <input type="email" name="email" placeholder="Type your email" value={this.state.email} onChange={this.changeHandler} /></label>
-            <label>Date of birth
-              <input type="date" name="birthday" value={this.state.birthday} onChange={this.changeHandler} />
-            </label>
-            <label>Where do you live?
-              <input type="text" name="city" value={this.state.city} onChange={this.changeHandler} /></label>
-          </div>
+        <div className="content-body">
+          <section className="welcomeText">
+            <h2>Register to find a buddy near you</h2>
+            <h3>First of all, congratulations that you decided to ask for help. We know
+              this is not easy, so you can be proud of yourself.  Fill out the form below,
+              so you can get access to the network of helping hands around you. </h3>
+          </section>
 
-          <div class="userSpecification">
+          <section className="userDetails">
+            <div className="persDetails">
 
-            <h3>How do you want to help?Multiple choice possible.</h3>
-            <ul className="multipleChoice">
-              <li>
-                <input type="checkbox" id="hangingOut" name="hangingOut" />
-                <label for="hangingOut"> hanging out (walk, showing your city, have a coffee/tea together, having a sport session together)
-                </label>
-              </li>
-              <li>
-                <input type="checkbox" id="dailyTasks" name="dailyTasks"/>
-                <label for="dailyTasks">organisation & daily tasks (grocery shopping, watering plants, German burocracy) </label>
-              </li>
-              <li>
-                <input type="checkbox" id="teaching" name="teaching"/>
-                <label for="teaching">teaching skills (tutoring, language help)
-                </label>
-              </li>
-            </ul>
-          </div>
-
-
-          <div class="password-wrapper">
-            <div>
-              <label>Choose a password
-                <input type='text' name='password' value={this.state.password} placeholder='Choose a password' onChange={this.changeHandler} />
+              {/* <form > */}
+              <label>Username
+                <input type='text' name='username' placeholder='Choose a username' value={this.state.username} onChange={this.changeHandler} />
               </label>
-            </div>
-            <div>
-              <label>Confirm the password
-                <input type="password" name="password" placeholder="Confirm your password" />
+              <label>Email adress
+                <input type="email" name="email" placeholder="Type your email" value={this.state.email} onChange={this.changeHandler} /></label>
+              <label>Date of birth
+                <input type="date" name="birthday" value={this.state.birthday} onChange={this.changeHandler} />
               </label>
+              <label>Where do you live?
+                <input type="text" name="city" value={this.state.city} onChange={this.changeHandler} /></label>
             </div>
-          </div>
 
-          <Upload></Upload>
-          <div>
-            <button onClick={this.submitHandler}>Sign up</button>
-            {/* </form> */}
-          </div>
-        </section >
+            <div class="userSpecification">
+
+              <h3>Where do you wish some support? Multiple choice possible.</h3>
+              <ul className="multipleChoice">
+                <li>
+                  <input type="checkbox" id="hangingOut" name="hangingOut" />
+                  <label for="hangingOut"> hanging out (walk, showing your city, have a coffee/tea together, having a sport session together)
+                  </label>
+                </li>
+                <li>
+                  <input type="checkbox" id="dailyTasks" name="dailyTasks" />
+                  <label for="dailyTasks">organisation & daily tasks (grocery shopping, watering plants, German burocracy) </label>
+                </li>
+                <li>
+                  <input type="checkbox" id="teaching" name="teaching" />
+                  <label for="teaching">teaching skills (tutoring, language help)
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+
+            <div class="password-wrapper">
+              <div>
+                <label>Choose a password
+                  <input type='text' name='password' value={this.state.password} placeholder='Choose a password' onChange={this.changeHandler} />
+                </label>
+              </div>
+              <div>
+                <label>Confirm the password
+                  <input type="password" name="password" placeholder="Confirm your password" />
+                </label>
+              </div>
+            </div>
+
+            <Upload></Upload>
+            <div>
+              <button onClick={this.submitHandler}>Sign up</button>
+              {/* </form> */}
+            </div>
+          </section >
+        </div>
       </div>
     );
   }

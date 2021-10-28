@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 //import NavbarBuddy from '../../navigation/NavbarBuddy';
 import axios from 'axios'
-import TigerDetails from './TigerDetails';
+import NavbarBuddy from '../../../navigation/NavbarBuddy'
 
 
 export default class BuddyView extends Component {
@@ -38,9 +38,9 @@ export default class BuddyView extends Component {
     }
     return (
       <div>
-        {/* <NavbarBuddy userInSession={this.state.loggedInUser} /> */}
+       <NavbarBuddy userInSession={this.props.loggedInUser} />
 
-        <div className="main-content-box">
+        <div className="content-body">
           <h3>People around you in need:</h3>
           <div className="box-wrapper">
             <div className="grid">

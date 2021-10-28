@@ -6,10 +6,9 @@ import Homepage from "./components/index/Homepage"
 import SignupBuddy from "./components/auth/SignupBuddy"
 import SignupTiger from "./components/auth/SignupTiger"
 import Login from "./components/auth/Login"
-import Logout from "./components/auth/Logout"
-import BuddyView from './components/auth/views/BuddyView';
-//import TigerView from './components/auth/views/TigerView';
-import TigerDetails from './components/auth/views/TigerDetails';
+import BuddyView from './components/auth/views/Buddy/BuddyView';
+import TigerView from './components/auth/views/Tiger/TigerView';
+import TigerDetails from './components/auth/views/Buddy/TigerDetails';
 import Footer from './components/index/Footer'
 import AboutUs from './components/index/AboutUs'
 
@@ -49,16 +48,12 @@ class App extends React.Component {
             }
           }}></Route>
           <Route exact path='/buddyView' component={BuddyView}></Route>
-          {/* <Route exact path='/tigerView' component={TigerView}></Route> */}
-
-          {/* <Route exact path='/logout' render={() => {
-            
-            return <Redirect to='/'></Redirect>
-          }} */}
+          <Route exact path='/tigerView' render={() => <TigerView userInSession={this.props.user}></TigerView>}></Route>
 
           <Route exact path='/tigerslist' component={BuddyView}></Route>
           <Route exact path='/tigerslist/:id' component={TigerDetails}></Route>
           <Route exact path='/about' component={AboutUs}></Route>
+          {/* <Route exact path='/contact/:id/message' component={Message}></Route> */}
 
         </Switch>
         <Footer logInTheUser={this.updateTheUser}></Footer>

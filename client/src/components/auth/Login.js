@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import NavbarFrontpage from '../navigation/NavbarFrontpage'
 
 //////so far its a plane login mechanism without differenciate between buddy and tiger!
 
@@ -9,7 +10,7 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
-        
+
     }
 
     // generic change handler for text input fields
@@ -37,12 +38,15 @@ class Login extends React.Component {
     render() {
 
         return (
-            <div className="App">
-                {/* <form > */}
-                <input type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
-                <input type='text' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
-                <button onClick={this.submitHandler}>Log in</button>
-                {/* </form> */}
+            <div>
+                <NavbarFrontpage />
+                <div className="login-box">
+                    <form className="loginForm" onSubmit={this.submitHandler}>
+                        <input type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
+                        <input type='text' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
+                        <button >Log in</button>
+                    </form>
+                </div>
             </div>
         );
     }
