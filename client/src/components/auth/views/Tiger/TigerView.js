@@ -2,103 +2,68 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import NavbarTiger from '../../../navigation/NavbarTiger';
-import Upload from '../../UploadPic'
+import DeleteAccount from '../../DeleteAccount';
 
 export default class TigerView extends Component {
-
-  //TigerViewContent: messages + own Profile..
-
   state = {
-    // loading: true,
-    //  messages: [],
-
-
-    tigerIntro: this.props.userInSession.profileInput.tigerIntro,
-    helpDef: this.props.userInSession.profileInput.helpDef
-
+    user: this.props.userInSession
   }
 
+  componentDidMount() {
+    axios.get('/api/user/checkuser').then(res => {
 
-  //toDo: Add the Profile Input to the state:
-  // componentDidMount() {
-  //   axios.post('/api/user/tigerView').then((allTigers) => {
-  //     this.setState({
-  //       profileInput: {
-  //         tigerIntro: '{this.}',
-  //         helpDef: '{this.}'
-  //       }
-  //     })
-  //   })
-  // }
-
-
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const tigerIntro = this.state.tigerIntro;
-    const helpDef = this.state.helpDef;
-    axios.post('/api/tigerView', { tigerIntro, helpDef })
-      .then(() => {
-        this.setState({ tigerIntro: "", helpDef: "" })
+      this.setState({
+        user: res.data.userDoc
       })
-      .catch(error => console.log(error))
-  }
-
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    })
   }
 
 
 
   render() {
+    console.log("user", this.state.user)
+    let userChoiceOfAction = this.state.user.choiceOfAction
+
     return (
 
       <div>
         <NavbarTiger userInSession={this.props.userInSession}></NavbarTiger>
         <div className='content-body'>
-          <div id="tigerViewLogIn-Wrapper">
+          <h3>Your profile:</h3>
+          <div id="tigerViewLoggedIn-Wrapper">
             <div className="tigerLeft">
-              <div>
-                <form
-                  className="tigerInputIntroduction"
-                  onSubmit={this.handleFormSubmit}>
-                  <p>
-                    <label for="tigerIntro">Write a few sentences about yourself: </label>
-                    {/* <input type="text" id="tigerIntro" name="tigerIntro" value={this.state.tigerIntro} onChange={e => this.handleChange(e)} /> */}
-                    <textarea
-                      type="text"
-                      id="tigerIntro"
-                      name="tigerIntro"
-                      //value={this.state.tigerIntro}
-                      onChange={e => this.handleChange(e)}
-                    >{this.state.tigerIntro}</textarea>
-
-                    <label for="helpDef">Write a few sentences about the help you need: </label>
-                    {/* <input type="text" id="tigerIntro" name="helpDef" value={this.state.helpDef} onChange={e => this.handleChange(e)} /> */}
-                    <textarea
-                      type="text"
-                      id="helpDef"
-                      name="helpDef"
-                      //value={this.state.helpDef}
-                      onChange={e => this.handleChange(e)}
-                    >{this.state.helpDef}</textarea>
-                  </p>
-                  <button type="submit" value="Submit">Submit</button>
-                </form>
+              <div className="profilePic">
+                {/* display profile pic if there is one otherwise show placeholder pic */}
+                {
+                  this.state.user.profilePicture ? <img src={this.state.user.profilePicture} width={"80px"}></img> : <img src="../../../images/profilepicPlaceholder.png" width={"80px"}></img>
+                }
+              </div>
+              <div className="profileDetailsList">
+                <div>
+                  <h4>Username: {this.state.user.username}</h4>
+                  <h4>City: {this.state.user.city}</h4>
+                </div>
               </div>
             </div>
             <div className="tigerRight">
-              <div className="profilePic">
-                <Upload></Upload>
+              <div>
+                <div>
+                  <h4>Cathegories: </h4>
+                  <p>{this.state.user.choiceOfAction}</p>
+                  {/* {userChoiceOfAction.map((task) => {<div>{task}</div>})} */}
+                  <h4>Introduction: </h4>
+                  <p>{this.state.user.profileInput.tigerIntro}</p>
+                  <h4>The help you're asking for: </h4>
+                  <p>{this.state.user.profileInput.helpDef}</p>
+                </div>
               </div>
-              <div className="profileDetailsList">
-                <h4>Username: {this.props.userInSession.username}</h4>
-                <h4>City: {this.props.userInSession.city}</h4>
-                <h4>Cathegories: {this.props.userInSession.choiceOfAction}</h4>
-              </div>
-              <h4>Add edit Profile Button/ integrate component</h4>
-              <h4>Add delete Profile Button/ integrate component</h4>
             </div>
           </div>
+        </div>
+        <div>
+          <button className="update-Btn"><Link to={`/tigerView/edit`}>Edit Profile
+          </Link></button>
+          <DeleteAccount></DeleteAccount>
         </div>
       </div>
     )

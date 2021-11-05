@@ -30,11 +30,12 @@ class Upload extends React.Component {
     }
 
     render() {
+        console.log("this.state",this.state.file)
         return (
             <div className="App">
                 <label>Choose a profile picture: </label>
                 <input type='file' onChange={this.uploadFile}></input>
-                <button onClick={this.saveHandler}>Save Image</button>
+                <button onClick={this.saveHandler} className="signup-btn">Save Image</button>
             </div>
         );
     }

@@ -11,6 +11,9 @@ import TigerView from './components/auth/views/Tiger/TigerView';
 import TigerDetails from './components/auth/views/Buddy/TigerDetails';
 import Footer from './components/index/Footer'
 import AboutUs from './components/index/AboutUs'
+import TigerEdit from './components/auth/views/Tiger/TigerEdit';
+import Inbox from './components/auth/contact/InboxBuddy'
+import Messenger from './components/auth/contact/Messenger'
 
 
 class App extends React.Component {
@@ -47,13 +50,17 @@ class App extends React.Component {
               )
             }
           }}></Route>
-          <Route exact path='/buddyView' component={BuddyView}></Route>
+          <Route exact path='/buddyView' render={() => <BuddyView userInSession={this.props.user}></BuddyView>}></Route>
           <Route exact path='/tigerView' render={() => <TigerView userInSession={this.props.user}></TigerView>}></Route>
+          <Route exact path='/tigerView/edit' render={() => <TigerEdit userInSession={this.props.user}></TigerEdit>}></Route>
+          
+          <Route exact path='/tigerslist/:id' render={() => <TigerDetails userInSession={this.props.user}  ></TigerDetails>}></Route>
+          <Route exact path='/about' render={()=> <AboutUs userInSession={this.props.user}></AboutUs>}></Route>
 
-          <Route exact path='/tigerslist' component={BuddyView}></Route>
-          <Route exact path='/tigerslist/:id' component={TigerDetails}></Route>
-          <Route exact path='/about' component={AboutUs}></Route>
-          {/* <Route exact path='/contact/:id/message' component={Message}></Route> */}
+          {/* <Route exact path='/contact/inbox' component={Inbox}></Route> */}
+
+          <Route exact path='/contact/:id/message' render={() => <Messenger userInSession={this.props.user}></Messenger>}></Route>
+          {/* <Route exact path='/contact/:id/message' {!this.props.user <Redirect to="/" /> : <Messenger/>} </Route> */}
 
         </Switch>
         <Footer logInTheUser={this.updateTheUser}></Footer>

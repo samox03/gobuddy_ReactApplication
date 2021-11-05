@@ -7,7 +7,7 @@ const User = require('../models/User.model');
 
 const uploader = require('../configs/cloudinary-setup');
 
-router.post('/api/upload', uploader.single("imageUrl"), (req, res, next) => {
+router.post('/', uploader.single("imageUrl"), (req, res, next) => {
     // console.log('file is: ', req.file)
 
   if (!req.file) {

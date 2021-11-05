@@ -5,9 +5,11 @@ import LogoutButton from '../auth/Logout';
 export default class Footer extends Component {
   render () {
     return(
-      <div className="Footer">
-        <LogoutButton logInTheUser={this.props.logInTheUser}>Logout</LogoutButton>
-        &copy; Samox [Ironhacker] 2021
+      <div className="footer">
+      <div className="container-footer">
+        <Link to='/about' className="link-footer">About Us</Link >
+        <div><p>&copy; Samox [Ironhacker] 2021</p></div>
+        </div>
       </div>
     )
   }

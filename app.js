@@ -84,6 +84,7 @@ app.use('/', index);
 
 app.use('/api/user', require('./routes/user'))
 app.use('/api/upload', require('./routes/file-upload-routes'));
+// app.use('/api/user/contact', require('./routes/contact'))
 
 
 
