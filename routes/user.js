@@ -321,6 +321,24 @@ router.get('/checkuser', (req, res, next) => {
   }
 })
 
+
+//////////// GET USER /////////// (used for messenger/ -> FE: Comversation.js)
+//double check if correctly adapted..
+//get a user
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+  try {
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    const { password, updatedAt, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //////////// DELETE USER ///////////
 router.delete('/delete/:id', (res, req) => {
   const { userID } = req.params;

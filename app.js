@@ -75,7 +75,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'GoBuddyApp - Generated with IronGenerator';
+
+
+
+/// messenger backend located in www-file
 
 
 
@@ -84,8 +88,8 @@ app.use('/', index);
 
 app.use('/api/user', require('./routes/user'))
 app.use('/api/upload', require('./routes/file-upload-routes'));
-// app.use('/api/user/contact', require('./routes/contact'))
-
+app.use('/api/conversations', require('./routes/conversations'))
+app.use('/api/messages', require('./routes/messages'))
 
 
 

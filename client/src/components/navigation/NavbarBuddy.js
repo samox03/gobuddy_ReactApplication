@@ -7,7 +7,7 @@ import LogoutButton from '../auth/Logout';
 const NavbarBuddy = (props) => {
 
   if (props.userInSession) {
-    console.log("props.userInSession",props.userInSession)
+    // console.log("props.userInSession",props.userInSession)
     return (
       <nav className="nav-style">
         <div className="nav-wrapper-left">
@@ -28,6 +28,11 @@ const NavbarBuddy = (props) => {
 
             <li>
               <Link to='/about' className="aboutLink navLink" style={{ textDecoration: 'none' }}> About Us</Link>
+            </li>
+            <li>
+            <Link to='/messenger'>
+            <img src="./../images/message_icon.png" className="nav-icon" alt="messenger icon"/>
+            </Link>
             </li>
             <li>
               <LogoutButton logInTheUser={props.logInTheUser}>Logout</LogoutButton>

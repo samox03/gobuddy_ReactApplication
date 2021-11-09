@@ -35,7 +35,7 @@ class Upload extends React.Component {
             <div className="App">
                 <label>Choose a profile picture: </label>
                 <input type='file' onChange={this.uploadFile}></input>
-                <button onClick={this.saveHandler} className="signup-btn">Save Image</button>
+                <button onClick={this.saveHandler} className="basic-btn">Save Image</button>
             </div>
         );
     }

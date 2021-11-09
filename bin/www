@@ -23,6 +23,24 @@ app.use((err, req, res, next) => {
 
 let server = http.createServer(app);
 
+
+// // commented out as its running on own socket file and server now..
+// const { Server } = require("socket.io")
+
+// const io = new Server(server)
+
+// //BASED ON SOCKET.IO Tutorial....
+
+// io.on('connection', socket => {
+//   console.log('connection made successfully')
+//   socket.emit("your socket ID: ", socket.id)
+//   socket.on('message', ({name, message}) => {
+//     console.log('Message received on server: ', {name, message})
+//     //all chat paticipants receive the send message:
+//     io.emit('message', {name, message})
+//   })
+// })
+
 server.on('error', error => {
   if (error.syscall !== 'listen') { throw error }
 

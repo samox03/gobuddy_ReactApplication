@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-
 /* font option: */
 /* @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700');
 "Roboto"  */
@@ -9,12 +8,10 @@
   text-align: center;
   font: 14px "Poppins", "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
-  overflow-y: hidden; 
-
+  overflow-y: hidden;
 }
 
 /* ----------------------------------------------------------------- */
-
 
 /* adjusting that content wraps if screensize lower than 960px width */
 @media (max-width: 960px) {
@@ -26,7 +23,6 @@
 a {
   color: #00b7ff;
 }
-
 
 #header-front {
   display: flex;
@@ -71,15 +67,14 @@ a {
   list-style: none;
 }
 
-.nav-link-wrapper ul{
+.nav-link-wrapper ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  width: 80%
+  width: 80%;
 }
-
 
 .nav-wrapper-left {
   display: flex;
@@ -104,6 +99,11 @@ a {
 .nav-link-wrapper a:hover {
   color: black;
   font-weight: normal;
+}
+
+.nav-icon {
+  cursor: pointer;
+  height: 25px;
 }
 
 .logo-small {
@@ -152,13 +152,14 @@ h4 {
   text-align: start;
   line-height: 23px;
   padding: 5px 0px;
+  font-weight: bolder;
 }
 
 .content-body {
-  margin: 15px 20px;
-  padding: 5px 30px;
+  /* margin: 15px 20px;*/
+  padding: 25px 30px; 
   background-color: rgb(243, 234, 253);
-  /* height: 500px; */
+  height: 100%;
 }
 
 #startpage {
@@ -175,7 +176,7 @@ h4 {
   margin: 16px auto;
 }
 
-.signup-btn {
+.basic-btn {
   text-decoration: none;
   color: rgb(2, 2, 2);
   border-radius: 18px;
@@ -187,7 +188,7 @@ h4 {
   background-color: rgb(255, 174, 160);
 }
 
-.signup-btn:hover {
+.basic-btn:hover {
   background-color: #e6c843;
   color: #fff;
   transition: 0.3s ease background;
@@ -301,15 +302,17 @@ display: flex;
 .userDetails {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  width: 80%;
+  justify-content: space-between;
+  /* width: 90%; */
   align-items: center;
   /* flex-wrap: wrap; */
 }
 
 .persDetails {
+  flex: 2;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 10px 20px
 }
 
 .persDetails form {
@@ -318,6 +321,7 @@ display: flex;
 }
 
 .userSpecification {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -395,9 +399,9 @@ input[type="checkbox"] {
   justify-content: space-around;
 }
 
-.content-tiger-det {
+/* .content-tiger-det {
   margin-top: 50px;
-}
+} */
 
 .tiger-det-box-wrapper {
   display: flex;
@@ -405,7 +409,7 @@ input[type="checkbox"] {
   justify-content: space-between;
 }
 
-.heading-spacer{
+.heading-spacer {
   margin-bottom: 10px;
 }
 
@@ -455,37 +459,50 @@ input[type="checkbox"] {
 .tigerLeft {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 1
+}
+
+.profileDetailsList{
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .tigerRight {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: flex-start;
+  position: relative;
+  flex: 1
 }
 
-.profilePic {
-  border-style: solid;
-  border-color: #e6c843;
-  height: 110px;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profilePic img {
-  height: 105px;
-  width: auto;
-  padding: 2px;
+.editForm {
+  width: 80%;
+  margin-top: 10px;
 }
 
 .editForm-containers {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: auto;
+  align-items: center;
+  width: 100%;
+  padding: 25px 0px;
+}
+
+.editForm-wrapper-1 {
+  flex: 1;
+}
+
+.editForm-wrapper-1 {
+  flex: 2;
+}
+
+.editForm-wrapper-1 {
+  flex: 1;
 }
 
 .update-Btn {
@@ -522,49 +539,6 @@ input[type="checkbox"] {
 .homeLink:hover {
   color: black;
 }
-
-/* .message-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.messenger-Box {
-  display: flex;
-  flex-direction: column;
-} */
-
-
-.messenger{
-  /* height: calc(100vh - 70px; */
-  display: flex;
-}
-
-.chatMenu{
-flex: 3.5
-}
-
-.chatBox{
-  flex: 5.5
-}
-
-.chatOnline{
-  flex: 3.0
-}
-
-.chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper{
-  padding: 10px;
-  background-color: #ff8157;
-  height: 100%;
-}
-
-.chatMenuInput{
-  width: 90%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 1px solid grey
-}
-
 
 .footer {
   font-size: 11px;
@@ -631,6 +605,23 @@ flex: 3.5
 }
 
 .profile-pic-det {
+  height: 150px;
+  width: 150px;
+  border: 8px solid #eee;
+  left: 40%;
+  border-radius: 50%;
+}
+
+.profilePic-tigerview {
+  height: 110px;
+  width: auto;
+  /* border: 8px solid #eee; */
+  /* position: absolute;
+  left: 20%; */
+  top: 0;
+}
+
+.profilePic-tigerview img {
   height: 150px;
   width: 150px;
   border: 8px solid #eee;
