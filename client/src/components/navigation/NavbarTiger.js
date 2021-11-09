@@ -24,6 +24,11 @@ const NavbarTiger = (props) => {
 
             <li><Link to='/about'>About Us</Link></li>
             <li>
+              <Link to='/messenger'>
+                <img src="./../images/message_icon.png" className="nav-icon" alt="messenger icon"/>
+                </Link>
+            </li>
+            <li>
               <LogoutButton logInTheUser={props.logInTheUser}>Logout</LogoutButton>
             </li>
           </ul>

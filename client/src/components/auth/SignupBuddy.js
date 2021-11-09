@@ -127,7 +127,7 @@ class SignupBuddy extends React.Component {
 
             {/* <Upload></Upload> */}
             <div>
-              <button onClick={this.submitHandler} className="signup-btn">Sign up</button>
+              <button onClick={this.submitHandler} className="basic-btn">Sign up</button>
               {/* </form> */}
             </div>
           </section >

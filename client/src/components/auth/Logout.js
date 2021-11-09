@@ -20,7 +20,7 @@ class LogoutButton extends React.Component {
 
 
   render() {
-    console.log("props",this.props)
+    //console.log("props",this.props)
     return (
       <div>
         <button onClick={this.submitHandler} className="logout-btn">Log out</button>
