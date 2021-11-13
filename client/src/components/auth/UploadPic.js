@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import "./uploadPic.css";
+
 
 // const uploadData = require('../configs/cloudinary-setup');
 
@@ -8,7 +10,8 @@ import axios from 'axios'
 class Upload extends React.Component {
 
     state = {
-        file: null
+        file: null,
+        profilePicture: this.props.userPic
     }
 
 
@@ -16,6 +19,7 @@ class Upload extends React.Component {
         this.setState({
             file: event.target.files[0]
         })
+        // .then(this.saveHandler())
     }
 
     saveHandler = () => {
@@ -30,12 +34,16 @@ class Upload extends React.Component {
     }
 
     render() {
-        console.log("this.state",this.state.file)
+        console.log("this.state", this.state.file)
         return (
-            <div className="App">
-                <label>Choose a profile picture: </label>
-                <input type='file' onChange={this.uploadFile}></input>
-                <button onClick={this.saveHandler} className="basic-btn">Save Image</button>
+            <div className="upload-container">
+                {/* <label for="files" className="basic-btn-small">Select Profile Picture</label> */}
+                <input id='files' 
+                type='file' 
+                onChange={this.uploadFile}   
+                // style={{display: 'none'}}
+                ></input>
+                <button onClick={this.saveHandler} className="basic-btn-small">Save Profile Pic</button>
             </div>
         );
     }

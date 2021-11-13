@@ -1,19 +1,25 @@
 .conversation {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding: 10px;
+  align-items: baseline;
+  padding: 10px 20px;
   cursor: pointer;
   margin-top: 20px;
+  border-radius: 30px;
+ width: 20em;
+ letter-spacing: 2px;
+
 }
 
 .conversation:hover {
-  background-color: rgb(210, 210, 210);
+  background-color: rgb(255, 225, 225);
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .conversationImg {
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px;
@@ -27,3 +33,4 @@
   .conversationName {
     display: none;
   }
+}

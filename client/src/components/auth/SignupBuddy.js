@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import NavbarFrontpage from "../../components/navigation/NavbarFrontpage"
 import Upload from './UploadPic'
+import { withRouter } from 'react-router-dom';
+
 
 
 class SignupBuddy extends React.Component {
@@ -47,7 +49,8 @@ class SignupBuddy extends React.Component {
         helpDef: this.state.profileInput.helpDef
       }
     }).then(() => {
-      alert('user created')
+      alert('user created');
+      this.props.history.push("/login")
     })
   }
 
@@ -59,10 +62,12 @@ class SignupBuddy extends React.Component {
         <NavbarFrontpage />
         <div className="content-body">
           <section className="welcomeText">
-            <h2>Connect with people in your area who will be glad about some hours of your support!</h2>
-            <h3>First of all, thank you for your choice of sharing your time! Fill out the form below, so you can take a look on the needs in your city. You will not get any requests from others, as a buddy it is on you to take a first step of contact.
-              </h3>
-        
+            <h2 className="header-signup">Connect with people in your area and share some hours of support!</h2>
+          </section>
+          <section>
+            <h3>First of all, thank you for your choice of sharing your time! Fill out the form below, so you can take a look on the needs in your city. </h3>
+            <h3>You will not get any requests from others, as a buddy it is on you to take a first step of contact.
+            </h3>
           </section>
 
           <section className="profile-det-wrapper">
@@ -111,20 +116,22 @@ class SignupBuddy extends React.Component {
               </div>
             </div>
 
-
+          </section>
+          <section>
             <div className="password-wrapper">
-              <div>
+              <div className="password-wrap">
                 <label>Choose a password:
                   <input type='password' name='password1' value={this.state.password1} placeholder='Choose a password' onChange={this.changeHandler} />
                 </label>
               </div>
-              <div>
+              <div className="password-wrap">
                 <label>Confirm the password:
                   <input type="password" name="password2" value={this.state.password2} placeholder="Confirm password" onChange={this.changeHandler} />
                 </label>
               </div>
             </div>
-
+          </section>
+          <section>
             {/* <Upload></Upload> */}
             <div>
               <button onClick={this.submitHandler} className="basic-btn">Sign up</button>
@@ -137,4 +144,4 @@ class SignupBuddy extends React.Component {
   }
 }
 
-export default SignupBuddy;
+export default withRouter(SignupBuddy);

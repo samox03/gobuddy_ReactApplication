@@ -16,7 +16,8 @@
   border-radius: 20px;
   background-color: #1877f2;
   color: white;
-  max-width: 300px;
+  max-width: 400px;
+  /* justify-content: flex-start; */
 }
 
 .messageBottom{
@@ -24,11 +25,40 @@
   margin-top: 10px;
 }
 
+.message{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+.message .messageTop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .message.own{
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
+  margin-top: 15px;
 }
 
 .message.own .messageText{
   background-color: rgb(245, 241, 241);
   color: black;
+  /* align-items: center; */
+}
+
+.message.own .messageTop{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.message.own .message-container{
+display: flex;
+flex-wrap: wrap;
+margin: 0 5px
 }

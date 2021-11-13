@@ -20,13 +20,15 @@ let users = []
 //to make sure to add one user with its socketId just once
 const addUser = (userId, socketId) => {
   !users.some(user => user.userId === userId) &&
-    users.push((userId, socketId))
+    users.push({userId, socketId})
 }
 
+//remove user from list
 const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
 
+//get user
 const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
 };

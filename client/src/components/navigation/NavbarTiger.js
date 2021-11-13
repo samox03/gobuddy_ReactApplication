@@ -17,12 +17,11 @@ const NavbarTiger = (props) => {
           </Link>
           <h2>Welcome, {props.userInSession.username} !</h2>
         </div>
-        <div className="nav-link-wrapper">
+        <div className="nav-link-wrapper nav-link-wrapper-tiger">
           <ul>
             {/* <Link to="/mailbox">Mailbox</Link> */}
             {/* <Link to="/logout">Logout</Link> */}
 
-            <li><Link to='/about'>About Us</Link></li>
             <li>
               <Link to='/messenger'>
                 <img src="./../images/message_icon.png" className="nav-icon" alt="messenger icon"/>

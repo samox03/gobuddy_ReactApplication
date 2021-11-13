@@ -8,7 +8,7 @@ const NavbarFrontpage = () => {
         <Link to="/" className="homeLink navLink" style={{ textDecoration: 'none' }}>
           <img src="../../images/logo2Gobuddy.png" className="logo-small" /> </Link>
       </div>
-      <div className="nav-link-wrapper">
+      <div className="nav-link-wrapper nav-link-wrapper-front">
         <Link to="/signup/buddy" >Sign up as a buddy </Link>
         <Link to="/signup/tiger" >Sign up as a tiger</Link>
         <Link to="/login" >Login</Link>

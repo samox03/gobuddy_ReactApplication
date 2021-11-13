@@ -12,9 +12,9 @@ export default class BuddyView extends Component {
     loading: true,
     tigers: [],
 
-    username: '',
-    city: '',
-    choiceOfAction: ''
+    // username: '',
+    // city: '',
+    // choiceOfAction: ''
   }
 
 
@@ -40,38 +40,51 @@ export default class BuddyView extends Component {
         <NavbarBuddy userInSession={this.props.userInSession} />
 
         <div className="content-body">
-          <h2>People around you in need:</h2>
-          {/* <div className="grid"> */}
-          <div className="box-wrapper">
-            {this.state.tigers.map((tiger) => {
-              return (
-                <div key={tiger._id} >
-                  <Link to={`/tigerslist/${tiger._id}`} className="link-container">
-                    {/* down here: bootstrap copy */}
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-lg-3 col-md-6 col-sm-6 mt-80 profile-box">
-                          <div className="card bg-white d-flex align-items-center justify-content-center ">
-                            <div className="w-100">
-                              {
-                                tiger.profilePicture ? <img src={tiger.profilePicture} alt="" className="profile-pic"></img> : <img src="../../../images/profilepicPlaceholder.png" className="profile-pic"></img>
-                              }
-                            </div>
-                            <div className="text-center card-text">
-                              <p className="prof-card-name">{tiger.username}</p>
-                              <p className="prof-card-city">  {tiger.city}</p>
-                              <p className="dis pb-4"> <strong>Looking for: </strong>
-                                {tiger.choiceOfAction}</p>
+          <div className="buddy-view-wrapper">
+            <div className="header-wrapper">
+              <h2 className="heading-font">People around you in need:</h2>
+            </div>
+            {/* <div className="grid"> */}
+            <div className="box-wrapper">
+
+              {this.state.tigers.map((tiger) => {
+                return (
+                  <div key={tiger._id} >
+                    <Link to={`/tigerslist/${tiger._id}`} className="link-container">
+                      {/* down here: bootstrap copy */}
+                      <div className="container">
+                        <div className="row">
+                          <div className="col-lg-3 col-md-6 col-sm-6 mt-80 profile-box">
+                            <div className="card bg-white d-flex align-items-center justify-content-center ">
+                              <div className="w-100 card-upper-part">
+                                {
+                                  tiger.profilePicture ? <img src={tiger.profilePicture} alt="" className="profile-pic"></img> : <img src="../../../images/profilepicPlaceholder.png" className="profile-pic"></img>
+                                }
+                              </div>
+                              <div className="text-center card-text card-lower-part">
+                                <p className="prof-card-name">{tiger.username}</p>
+                                <p className="prof-card-city">  {tiger.city}</p>
+                                <p className="prof-card-searchtarget pb-4"> <strong>Looking for: </strong></p>
+                                <div className="action-tags-wrapper">
+                                  {tiger.choiceOfAction?.map((action) => {
+                                    return (
+                                      <div className="action-tags">
+                                       <div className="action-tag"><p>{action}</p></div>
+                                      </div>)
+                                  })
+                                  }
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </div>
-              )
-            })}
+                    </Link>
+                  </div>
+                )
+              })}
 
+            </div>
           </div>
         </div>
       </div>

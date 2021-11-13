@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import NavbarFrontpage from "../../components/navigation/NavbarFrontpage"
 import Upload from './UploadPic'
+import { withRouter } from 'react-router-dom';
+
 
 
 class SignupTiger extends React.Component {
@@ -48,7 +50,8 @@ class SignupTiger extends React.Component {
       }
     })
       .then(() => {
-        alert('user created')
+        alert('user created');
+        this.props.history.push("/login")
       })
   }
 
@@ -62,10 +65,12 @@ class SignupTiger extends React.Component {
 
         <div className="content-body">
           <section className="welcomeText">
-            <h2>Register to find a buddy near you</h2>
-            <h3>First of all, congratulations that you decided to ask for help. We know
-              this is not easy, so you can be proud of yourself.  Fill out the form below,
-              so you can get access to the network of helping hands around you. </h3>
+            <h2 className="header-signup">Register to find a buddy near you</h2>
+           </section>
+           <section>
+            <h3>First of all, congratulations that you decided to ask for help. </h3> <h3> We know
+              this is not easy, so you can be proud of yourself! </h3> <h3>Fill out the form below,
+                so you can get access to the network of helping hands around you. </h3>
           </section>
 
           <section className="profile-det-wrapper">
@@ -112,30 +117,32 @@ class SignupTiger extends React.Component {
                 </ul>
               </div>
             </div>
-
+          </section >
+          <section>
             <div className="password-wrapper">
-              <div>
+              <div className="password-wrap">
                 <label>Choose a password:
                   <input type='password' name='password1' value={this.state.password1} placeholder='Choose a password' onChange={this.changeHandler} />
                 </label>
               </div>
-              <div>
+              <div className="password-wrap">
                 <label>Confirm the password:
                   <input type="password" name="password2" value={this.state.password2} placeholder="Confirm your password" onChange={this.changeHandler} />
                 </label>
               </div>
             </div>
-
+          </section>
+          <section>
             {/* <Upload></Upload> */}
             <div>
               <button onClick={this.submitHandler} className="basic-btn">Sign up</button>
               {/* </form> */}
             </div>
-          </section >
+          </section>
         </div>
       </div>
     );
   }
 }
 
-export default SignupTiger;
+export default withRouter(SignupTiger);

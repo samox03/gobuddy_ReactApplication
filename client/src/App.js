@@ -50,22 +50,22 @@ class App extends React.Component {
               )
             }
           }}></Route>
-          <Route exact path='/buddyView' render={() => <BuddyView userInSession={this.props.user}></BuddyView>}></Route>
-          <Route exact path='/tigerView' render={() => <TigerView userInSession={this.props.user}></TigerView>}></Route>
-          <Route exact path='/tigerView/edit' render={() => <TigerEdit userInSession={this.props.user}></TigerEdit>}></Route>
+          <Route exact path='/buddyView' render={() => <BuddyView userInSession={this.state.currentUser}></BuddyView>}></Route>
+          <Route exact path='/tigerView' render={() => <TigerView userInSession={this.state.currentUser}></TigerView>}></Route>
+          <Route exact path='/tigerView/edit' render={() => <TigerEdit userInSession={this.state.currentUser}></TigerEdit>}></Route>
 
-          <Route exact path='/tigerslist/:id' render={() => <TigerDetails userInSession={this.props.user}  ></TigerDetails>}></Route>
-          <Route exact path='/about' render={() => <AboutUs userInSession={this.props.user}></AboutUs>}></Route>
+          <Route exact path='/tigerslist/:id' render={() => <TigerDetails userInSession={this.state.currentUser}  ></TigerDetails>}></Route>
+          <Route exact path='/about' render={() => <AboutUs userInSession={this.state.currentUser}></AboutUs>}></Route>
 
           {/* <Route exact path='/contact/inbox' component={Inbox}></Route> */}
           {/* <Route exact path='/messenger' render={() => <Messenger userInSession={this.props.user}></Messenger>}></Route> */}
 
-          <Route exact path='/messenger' render={() => <Chatpage userInSession={this.props.user}></Chatpage>}></Route>
-          <Route exact path='/contact/:id/message' render={() => <Messenger userInSession={this.props.user}></Messenger>}></Route>
+          <Route exact path='/messenger' render={() => <Chatpage userInSession={this.state.currentUser} ></Chatpage>}></Route>
+          {/* <Route exact path='/contact/:id/message' render={() => <Messenger userInSession={this.props.user}></Messenger>}></Route> */}
           {/* <Route exact path='/contact/:id/message' {!this.props.user <Redirect to="/" /> : <Messenger/>} </Route> */}
 
         </Switch>
-        <Footer logInTheUser={this.updateTheUser} userInSession={this.props.userInSession}></Footer>
+        <Footer logInTheUser={this.updateTheUser} userInSession={this.state.currentUser}></Footer>
       </div>
     );
   }

@@ -15,7 +15,7 @@ const NavbarBuddy = (props) => {
             <img src="../../images/logo2Gobuddy.png" className="logo-small" />
           </div>
           <Link to="/buddyView" className="homeLink navLink" style={{ textDecoration: 'none' }}>
-            <h2>Welcome, {props.userInSession.username} !</h2> </Link>
+            <h2 className="">Welcome, {props.userInSession.username} !</h2> </Link>
         </div>
         <div className="nav-link-wrapper">
           <ul>
@@ -24,10 +24,6 @@ const NavbarBuddy = (props) => {
             {/* <li><Link to="/logout">Logout</Link></li> */}
             <li>
               <Link to="/buddyView">Overview</Link>
-            </li>
-
-            <li>
-              <Link to='/about' className="aboutLink navLink" style={{ textDecoration: 'none' }}> About Us</Link>
             </li>
             <li>
             <Link to='/messenger'>

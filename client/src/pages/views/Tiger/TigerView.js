@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import NavbarTiger from '../../../components/navigation/NavbarTiger';
+import Upload from '../../../components/auth/UploadPic';
 import DeleteAccount from '../../../components/auth/DeleteAccount';
 
 export default class TigerView extends Component {
@@ -29,39 +30,48 @@ export default class TigerView extends Component {
       <div>
         <NavbarTiger userInSession={this.props.userInSession}></NavbarTiger>
         <div className='content-body'>
-          <h3>Your profile:</h3>
-          <div id="tigerViewLoggedIn-Wrapper">
+          <p className="header-in-page">Your profile:</p>
+          <div className="grid-tiger-det">
             <div className="tigerLeft">
-              <div className="profilePic-tigerview">
+              <div className="w-100 tiger-pic-det">
                 {/* display profile pic if there is one otherwise show placeholder pic */}
                 {
-                  this.state.user.profilePicture ? <img src={this.state.user.profilePicture} width={"80px"}></img> : <img src="../../../images/profilepicPlaceholder.png" width={"80px"} className="profile-pic-det"></img>
+                  this.state.user.profilePicture ? <img src={this.state.user.profilePicture} width={"80px"} className="profile-pic-det"></img> : <img src="../../../images/profilepicPlaceholder.png" width={"80px"} className="profile-pic-det"></img>
                 }
               </div>
               <div className="profileDetailsList">
-               
-                  <h3>Username: {this.state.user.username}</h3>
-                  <h3>City: {this.state.user.city}</h3>
-            
+                <p> <strong>Username: </strong></p>
+                <p>{this.state.user.username}</p>
+                <p><strong>City: </strong> </p>
+                <p>{this.state.user.city}</p>
               </div>
             </div>
             <div className="tigerRight">
-                <div className="tigerRight-content" >
-                  <h4>Cathegories: </h4>
+              <div className="tigerDetails-wrapper" >
+                <div className="content-tiger-det">
+                  <div className="content-tiger-det">
+                    <p> <strong>Cathegories:</strong></p>
+                  </div>
                   <p>{this.state.user.choiceOfAction}</p>
                   {/* {userChoiceOfAction.map((task) => {<div>{task}</div>})} */}
-                  <h4>Introduction: </h4>
-                  <p>{this.state.user.profileInput.tigerIntro}</p>
-                  <h4>The help you're asking for: </h4>
-                  <p>{this.state.user.profileInput.helpDef}</p>
+                  <div className="content-tiger-det">
+                    <p><strong>Introduction: </strong></p>
+                    <p>{this.state.user.profileInput.tigerIntro}</p>
+                  </div>
+                  <div className="content-tiger-det">
+                    <p><strong>The help you're asking for: </strong></p>
+                    <p>{this.state.user.profileInput.helpDef}</p>
+                  </div>
+                  <Upload userPic={this.state.profilePicture} ></Upload>
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <button className="update-Btn"><Link to={`/tigerView/edit`}>Edit Profile
-          </Link></button>
-        
+          <div>
+            <button className="update-Btn"><Link to={`/tigerView/edit`}>Edit Profile
+            </Link></button>
+          </div>
         </div>
       </div>
     )

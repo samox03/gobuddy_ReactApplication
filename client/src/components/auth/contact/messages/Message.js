@@ -12,7 +12,14 @@ export default function Message({ message, own }) {
           src="../../../images/profilepicPlaceholder.png"
           alt=""
         />
-        <p className="messageText">{message.text} </p>
+        {/* <img
+          className="conversationImg"
+          src={
+            user?.profilePicture ? user.profilePicture : "../../../images/profilepicPlaceholder.png"
+          }
+          alt="profile picture"
+        /> */}
+        <div className="message-container"><p className="messageText">{message.text} </p></div>
       </div>
       <div className="messageBottom">{format(message.createdAt)}</div>
     </div>

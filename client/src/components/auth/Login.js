@@ -39,20 +39,28 @@ class Login extends React.Component {
         return (
             <div>
                 <NavbarFrontpage />
-                <div className="content-body">
-                    <div className="login-wrapper">
+                <div className="content-body-tight">
+                    <section>
                         <div className="header-basic">
-                            <h2>BUILD NEW BRIDGES!</h2>
+                            <h2 className="heading-font">BUILD NEW BRIDGES!</h2>
+                        </div>
+                    </section>
+                    <section className="login-wrapper-section">
+                        <div className="header-basic">
                             <h4>Log into your account:</h4>
                         </div>
+                    
+                    <div className="login-wrapper">
+
                         <div className="login-box">
                             <form className="loginForm" onSubmit={this.submitHandler}>
-                                <input type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
-                                <input type='password' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
+                                <input className="loginFormInput" type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
+                                <input className="loginFormInput" type='password' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
                                 <button>Log in</button>
                             </form>
                         </div>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         );

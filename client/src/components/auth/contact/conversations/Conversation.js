@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import "./conversation.css";
+import "./conversation.css";
+// const User = require('../models/User.model');
+
 
 export default function Conversation({ conversation, currentUser }) {
-  //user came in as props from partent component
-  const [user, setUser] = useState(null);
+  //user came in as props from parent component
+  let [friend, setFriend] = useState(null)
 
   //const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -13,36 +15,37 @@ export default function Conversation({ conversation, currentUser }) {
     //show the other user in conversation that is not user
     const friendId = conversation.members.find((m) => m !== currentUser._id);
 
+    //find username of conversation partner
+
     //
-    const getUser = async () => {
+    const getFriend = async () => {
       try {
         //what is the axios here is for? it says it catchs the currentusers id + the conversation partners id...
-        const res = await axios("api/users?userId=" + friendId);
+        const res = await axios("/api/user?userId=" + friendId);
         //respond shall be both communicators details...
-        setUser(res.data);
+        setFriend(res.data);
+        
       } catch (err) {
         console.log(err);
       }
     };
-    getUser();
+    getFriend();
   }, [currentUser, conversation]);
 
   return (
     <div className="conversation">
-
-      {/* <img
-        //className="conversationImg"
-        src={
-          user.profilePicture? user.profilePicture : "../../../images/profilepicPlaceholder.png"
-        }
-        alt="profile picture"
-      /> */}
-      <div> <img src="../../../images/profilepicPlaceholder.png" className="messageImg" />
-        <span className="conversationName">{user?.username}</span>
-        {/* <span className="conversationName">{friendId.username}</span> */}
+      <div>
+        <img
+          className="conversationImg"
+          src={
+            friend?.profilePicture ? friend.profilePicture : "../../../images/profilepicPlaceholder.png"
+          }
+          alt="profile picture"
+        />
       </div>
       <div>
-        <h3>Display Conversation Name..</h3>
+        <p className="">{friend?.username}</p>
+
       </div>
     </div>
   );

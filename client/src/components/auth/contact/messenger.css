@@ -1,11 +1,19 @@
 .messenger {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 10px);
   display: flex;
 }
 
+/* .heading-font-messenger{
+  font-family: 'PT Sans Caption', sans-serif;
+  margin-bottom: 20px;
+} */
+
 .chatMenu {
-  flex: 3.5;
-  padding: 20px
+  flex: 3;
+  padding: 20px;
+  border-right: 1px solid rgb(194, 184, 184);
+  background-color: #fff;
+
 }
 
 .chatMenuInput {
@@ -15,8 +23,16 @@
   border-bottom: 1px solid gray;
 }
 
+.conversation-list-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2.5em;
+  padding-top: 1em;
+}
+
 .chatBox {
-  flex: 5.5;
+  flex: 6.5;
   padding: 20px
 }
 
@@ -25,12 +41,17 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  height: 90%;
 }
 
 .chatBoxTop {
   height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
+  background-color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+
 }
 
 .chatBoxBottom {
@@ -39,23 +60,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  padding: 20px
 }
 
 .chatMessageInput {
   width: 80%;
   height: 90px;
   padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: none;
 }
 
 .chatSubmitButton {
-  width: 70px;
-  height: 40px;
+  text-decoration: none;
+  color: rgb(2, 2, 2);
+  border-radius: 18px;
+  padding: 4px 20px;
+  align-items: center;
+  margin: 8px 10px;
+  padding: 5px 18px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: teal;
-  color: white;
+  width: 120px;
+  background-color: rgb(255, 174, 160);
+  letter-spacing: 2px;
 }
+
+.chatSubmitButton:hover {
+  text-decoration: none;
+  color: #fff;
+  border-radius: 18px;
+  padding: 4px 10px;
+  align-items: center;
+  margin: 8px 10px;
+  padding: 5px 18px;
+  border: none;
+  background-color: #1877f2;
+}
+
+
 
 .chatOnline {
   flex: 3;
@@ -111,4 +154,27 @@
   .chatOnline{
     flex: 1px;
   }
+
+}
+
+@media screen and (max-width: 480px) {
+.messenger{
+  display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+
+}
+
+.chatBoxWrapper{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.noConversationText{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 }
