@@ -8,10 +8,10 @@ const NavbarFrontpage = () => {
         <Link to="/" className="homeLink navLink" style={{ textDecoration: 'none' }}>
           <img src="../../images/logo2Gobuddy.png" className="logo-small" /> </Link>
       </div>
-      <div className="nav-link-wrapper nav-link-wrapper-front">
-        <Link to="/signup/buddy" >Sign up as a buddy </Link>
-        <Link to="/signup/tiger" >Sign up as a tiger</Link>
-        <Link to="/login" >Login</Link>
+      <div className="nav-link-wrapper-front">
+        <Link to="/signup/buddy" className=" navLink">Sign up as a buddy </Link>
+        <Link to="/signup/tiger" className=" navLink">Sign up as a tiger</Link>
+        <Link to="/login" className=" navLink">Login</Link>
         <Link to='/about' className="aboutLink navLink" style={{ textDecoration: 'none' }}> About Us</Link>
         {/* <Route exact path='/support' component={Support}>Support</Route> */}
       </div>

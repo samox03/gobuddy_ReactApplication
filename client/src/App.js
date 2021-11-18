@@ -52,7 +52,7 @@ class App extends React.Component {
           }}></Route>
           <Route exact path='/buddyView' render={() => <BuddyView userInSession={this.state.currentUser}></BuddyView>}></Route>
           <Route exact path='/tigerView' render={() => <TigerView userInSession={this.state.currentUser}></TigerView>}></Route>
-          <Route exact path='/tigerView/edit' render={() => <TigerEdit userInSession={this.state.currentUser}></TigerEdit>}></Route>
+          <Route exact path='/tigerView/edit' render={() => <TigerEdit logInTheUser={this.updateTheUser} userInSession={this.state.currentUser}></TigerEdit>}></Route>
 
           <Route exact path='/tigerslist/:id' render={() => <TigerDetails userInSession={this.state.currentUser}  ></TigerDetails>}></Route>
           <Route exact path='/about' render={() => <AboutUs userInSession={this.state.currentUser}></AboutUs>}></Route>

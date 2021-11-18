@@ -69,7 +69,7 @@ export default class BuddyView extends Component {
                                   {tiger.choiceOfAction?.map((action) => {
                                     return (
                                       <div className="action-tags">
-                                       <div className="action-tag"><p>{action}</p></div>
+                                       <div><p>{action}</p></div>
                                       </div>)
                                   })
                                   }

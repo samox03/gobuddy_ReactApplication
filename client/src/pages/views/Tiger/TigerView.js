@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import NavbarTiger from '../../../components/navigation/NavbarTiger';
-import Upload from '../../../components/auth/UploadPic';
 import DeleteAccount from '../../../components/auth/DeleteAccount';
 
 export default class TigerView extends Component {
@@ -30,47 +29,49 @@ export default class TigerView extends Component {
       <div>
         <NavbarTiger userInSession={this.props.userInSession}></NavbarTiger>
         <div className='content-body'>
-          <p className="header-in-page">Your profile:</p>
-          <div className="grid-tiger-det">
-            <div className="tigerLeft">
-              <div className="w-100 tiger-pic-det">
-                {/* display profile pic if there is one otherwise show placeholder pic */}
-                {
-                  this.state.user.profilePicture ? <img src={this.state.user.profilePicture} width={"80px"} className="profile-pic-det"></img> : <img src="../../../images/profilepicPlaceholder.png" width={"80px"} className="profile-pic-det"></img>
-                }
+          <div className="buddy-view-wrapper">
+            <p className="header-in-page">Your profile:</p>
+            <div className="grid-tiger-det">
+              <div className="tigerLeft">
+                <div className="w-100 tiger-pic-det">
+                  {/* display profile pic if there is one otherwise show placeholder pic */}
+                  {
+                    this.state.user.profilePicture ? <img src={this.state.user.profilePicture} width={"80px"} className="profile-pic-det"></img> : <img src="../../../images/profilepicPlaceholder.png" width={"80px"} className="profile-pic-det"></img>
+                  }
+                </div>
+                <div className="profileDetailsList">
+                  <p> <strong>Username: </strong></p>
+                  <p>{this.state.user.username}</p>
+                  <p><strong>City: </strong> </p>
+                  <p>{this.state.user.city}</p>
+                </div>
               </div>
-              <div className="profileDetailsList">
-                <p> <strong>Username: </strong></p>
-                <p>{this.state.user.username}</p>
-                <p><strong>City: </strong> </p>
-                <p>{this.state.user.city}</p>
-              </div>
-            </div>
-            <div className="tigerRight">
-              <div className="tigerDetails-wrapper" >
-                <div className="content-tiger-det">
+              <div className="tigerRight">
+                <div className="tigerDetails-wrapper" >
                   <div className="content-tiger-det">
-                    <p> <strong>Cathegories:</strong></p>
-                  </div>
-                  <p>{this.state.user.choiceOfAction}</p>
-                  {/* {userChoiceOfAction.map((task) => {<div>{task}</div>})} */}
-                  <div className="content-tiger-det">
-                    <p><strong>Introduction: </strong></p>
-                    <p>{this.state.user.profileInput.tigerIntro}</p>
-                  </div>
-                  <div className="content-tiger-det">
-                    <p><strong>The help you're asking for: </strong></p>
-                    <p>{this.state.user.profileInput.helpDef}</p>
-                  </div>
-                  <Upload userPic={this.state.profilePicture} ></Upload>
+                    <div className="content-tiger-det">
+                      <p> <strong>Cathegories:</strong></p>
+                    </div>
+                    <div className="tag-wrapper-tigerpage">
+                      {this.state.user.choiceOfAction.map((task) => { return (<div className="action-tag">{task}</div>) })}
+                    </div>
+                    <div className="content-tiger-det">
+                      <p><strong>Introduction: </strong></p>
+                      <p>{this.state.user.profileInput.tigerIntro}</p>
+                    </div>
+                    <div className="content-tiger-det">
+                      <p><strong>The help you're asking for: </strong></p>
+                      <p>{this.state.user.profileInput.helpDef}</p>
+                    </div>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <button className="update-Btn"><Link to={`/tigerView/edit`}>Edit Profile
-            </Link></button>
+            <div>
+              <button className="update-Btn"><Link to={`/tigerView/edit`}>Edit Profile
+              </Link></button>
+            </div>
           </div>
         </div>
       </div>

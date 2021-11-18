@@ -20,7 +20,8 @@ class SignupBuddy extends React.Component {
     profileInput: {
       tigerIntro: '',
       helpDef: ''
-    }
+    },
+    errorMessage: ""
   }
 
   // generic change handler for text input fields
@@ -34,7 +35,9 @@ class SignupBuddy extends React.Component {
   }
 
   //class property syntax
-  submitHandler = () => {
+  submitHandler = (event) => {
+    event.preventDefault();
+
     axios.post('/api/user/signup/buddy', {
       username: this.state.username,
       email: this.state.email,
@@ -48,11 +51,22 @@ class SignupBuddy extends React.Component {
         tigerIntro: this.state.profileInput.tigerIntro,
         helpDef: this.state.profileInput.helpDef
       }
-    }).then(() => {
-      alert('user created');
-      this.props.history.push("/login")
+    }).then((result) => {
+      console.log("result", result.data.errorMessage)
+      //display error message if an error gets send from BE:
+      if (result.data.errorMessage) {
+        this.setState({
+          errorMessage: result.data.errorMessage
+        })
+      } else {
+
+        this.props.history.push("/login")
+      }
+    }).catch(error => {
+      console.log("error", error)
     })
   }
+
 
 
 
@@ -136,6 +150,11 @@ class SignupBuddy extends React.Component {
             <div>
               <button onClick={this.submitHandler} className="basic-btn">Sign up</button>
               {/* </form> */}
+              <div>
+                {
+                  this.state.errorMessage && <h1 className="errorMessage">{this.state.errorMessage}</h1>
+                }
+              </div>
             </div>
           </section >
         </div>

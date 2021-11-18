@@ -21,7 +21,16 @@ router.post("/signup/buddy", (req, res, next) => {
 
   //storing the userinput 
   //usertype still undefined and needs to be preset for this formvalidation 
-  const { username, email, password1, password2, birthday, city, hangingOut, dailyTasks, teaching,  } = req.body;
+  const { username, email, password1, password2, birthday, city, hangingOut, dailyTasks, teaching, } = req.body;
+
+
+  // all fields have to be filled stays untouched
+  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
+  if (!username || !email || !password1 || !password2 || !birthday) {
+    console.log("not all mandatory input is given..")
+    res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
+    return;
+  }
 
   //reducing the passwords to one
   //still open: check if both inputs are the same
@@ -30,9 +39,18 @@ router.post("/signup/buddy", (req, res, next) => {
     password = password1
   }
   else {
-    res.json({ errorMessage: 'Please confirm your password again.' })
+    res.json({ errorMessage: 'Please confirm your password again. An error occured.' })
     return;
   }
+
+  //make sure passwords are strong
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res.status(500)
+      .json({ errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
 
   let choiceOfAction = []
 
@@ -47,20 +65,9 @@ router.post("/signup/buddy", (req, res, next) => {
     choiceOfAction.push('teaching')
   }
 
-  // all fields have to be filled stays untouched
-  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
-  if (!username || !email || !password1 || !password2 || !birthday) {
-    console.log("not all mandatory input is given..")
-    res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
-    return;
-  }
-
-  //make sure passwords are strong
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
-    res.status(500)
-      .json({ errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
-    return;
+  //editing the city so that it always starts with a uppercase letter:
+  function capitalizeFirstLetter(cityName) {
+    return cityName.charAt(0).toUpperCase() + cityName.slice(1);
   }
 
   //creating the according data in db, but using the encrypted version:
@@ -70,7 +77,7 @@ router.post("/signup/buddy", (req, res, next) => {
   const hash1 = bcrypt.hashSync(password, salt);
 
   console.log("creating user ...")
-  User.create({ username: username, email: email, passwordHash: hash1, usertype: "buddy", city: city, birthday: birthday, choiceOfAction: choiceOfAction, profileInput: {}, profileImage: ""})
+  User.create({ username: username, email: email, passwordHash: hash1, usertype: "buddy", city: capitalizeFirstLetter(city), birthday: birthday, choiceOfAction: choiceOfAction, profileInput: {}, profileImage: "" })
 
     .then(userFromDB => {
       console.log('A new buddy has joined the pool: ', userFromDB);
@@ -123,7 +130,7 @@ router.get('/tigerslist/:id', (req, res) => {
   }
   else {
     User.findById(req.params.id).then(response => {
-      console.log("=================>",response)
+      console.log("=================>", response)
       res.status(200).json(response);
     })
       .catch(err => {
@@ -148,6 +155,14 @@ router.post("/signup/tiger", (req, res, next) => {
   //usertype still undefined and needs to be preset for this formvalidation 
   const { username, email, password1, password2, birthday, city, hangingOut, dailyTasks, teaching } = req.body;
 
+  // all fields have to be filled stays untouched
+  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
+  if (!username || !email || !password1 || !password2 || !birthday) {
+    res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
+    return;
+  }
+
+
   //reducing the passwords to one
   //still open: check if both inputs are the same
   let password
@@ -171,12 +186,6 @@ router.post("/signup/tiger", (req, res, next) => {
     choiceOfAction.push('teaching')
   }
 
-  // all fields have to be filled stays untouched
-  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
-  if (!username || !email || !password1 || !password2 || !birthday) {
-    res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
-    return;
-  }
 
   //make sure passwords are strong
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -191,7 +200,12 @@ router.post("/signup/tiger", (req, res, next) => {
   //create a hashed version of the password:
   const hash1 = bcrypt.hashSync(password, salt);
 
-  User.create({ username: username, email: email, passwordHash: hash1, usertype: "inNeed", city: city, birthday: birthday, choiceOfAction: choiceOfAction })
+  //editing the city so that it always starts with a uppercase letter:
+  function capitalizeFirstLetter(cityName) {
+    return cityName.charAt(0).toUpperCase() + cityName.slice(1);
+  }
+
+  User.create({ username: username, email: email, passwordHash: hash1, usertype: "inNeed", city: capitalizeFirstLetter(city), birthday: birthday, choiceOfAction: choiceOfAction })
 
     .then(userFromDB => {
       console.log('A new buddy has joined the pool: ', userFromDB);
@@ -245,7 +259,6 @@ router.post('/tigerView', (req, res) => {
       tigerIntro: req.body.tigerIntro,
       helpDef: req.body.helpDef
     },
-    profilePicture: req.body.profilePicture
   })
     .then((user) => {
       console.log("user", user)
@@ -340,14 +353,13 @@ router.get("/", async (req, res) => {
 });
 
 //////////// DELETE USER ///////////
-router.delete('/delete/:id', (res, req) => {
-  const { userID } = req.params;
-  User.findOneAndDelete({_id: userID}, 
-    (err, result) => {
-    if (err) return res.send(500, err)
+router.delete('/delete', (req, res) => {
+  // const { userID } = req.params.id;
+  User.findOneAndDelete({ _id: req.session.currentUser._id }).then(() => {
     console.log('got deleted');
-    res.redirect('/');
-    });
+    res.json({ msg: 'success' })
+  })
+
 })
 
 

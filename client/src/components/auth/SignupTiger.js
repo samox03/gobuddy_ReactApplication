@@ -20,7 +20,8 @@ class SignupTiger extends React.Component {
     profileInput: {
       tigerIntro: '',
       helpDef: ''
-    }
+    },
+    errorMessage: ""
   }
 
   // generic change handler for text input fields
@@ -34,7 +35,9 @@ class SignupTiger extends React.Component {
   }
 
   //class property syntax
-  submitHandler = () => {
+  submitHandler = (event) => {
+    event.preventDefault();
+
     axios.post('/api/user/signup/tiger', {
       username: this.state.username,
       email: this.state.email,
@@ -49,9 +52,19 @@ class SignupTiger extends React.Component {
         helpDef: this.state.profileInput.helpDef
       }
     })
-      .then(() => {
-        alert('user created');
-        this.props.history.push("/login")
+      .then((result) => {
+        console.log("result", result.data.errorMessage)
+        //display error message if an error gets send from BE:
+        if (result.data.errorMessage) {
+          this.setState({
+            errorMessage: result.data.errorMessage
+          })
+        } else {
+
+          this.props.history.push("/login")
+        }
+      }).catch(error => {
+        console.log("error", error)
       })
   }
 
@@ -66,8 +79,8 @@ class SignupTiger extends React.Component {
         <div className="content-body">
           <section className="welcomeText">
             <h2 className="header-signup">Register to find a buddy near you</h2>
-           </section>
-           <section>
+          </section>
+          <section>
             <h3>First of all, congratulations that you decided to ask for help. </h3> <h3> We know
               this is not easy, so you can be proud of yourself! </h3> <h3>Fill out the form below,
                 so you can get access to the network of helping hands around you. </h3>
@@ -136,6 +149,11 @@ class SignupTiger extends React.Component {
             {/* <Upload></Upload> */}
             <div>
               <button onClick={this.submitHandler} className="basic-btn">Sign up</button>
+              <div>
+                {
+                  this.state.errorMessage && <h1 className="errorMessage">{this.state.errorMessage}</h1>
+                }
+              </div>
               {/* </form> */}
             </div>
           </section>

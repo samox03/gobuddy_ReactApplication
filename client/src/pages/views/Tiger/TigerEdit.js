@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import NavbarFrontpage from '../../../components/navigation/NavbarFrontpage'
-
-import { withRouter, Link} from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import DeleteAccount from '../../../components/auth/DeleteAccount';
+import Upload from '../../../components/auth/UploadPic';
 
 
 class TigerEdit extends Component {
@@ -16,7 +16,7 @@ class TigerEdit extends Component {
     choiceOfAction: this.props.userInSession.choiceOfAction,
     tigerIntro: this.props.userInSession.profileInput.tigerIntro,
     helpDef: this.props.userInSession.profileInput.helpDef,
-    profilePicture: this.props.userInSession.profileInput.helpDef
+    profilePicture: this.props.userInSession.profilePicture
   }
 
 
@@ -42,7 +42,8 @@ class TigerEdit extends Component {
 
     const tigerIntro = this.state.tigerIntro;
     const helpDef = this.state.helpDef;
-    axios.post('/api/user/tigerView', { username, city, choiceOfAction, tigerIntro, helpDef})
+    const profilePicture = this.state.profilePicture
+    axios.post('/api/user/tigerView', { username, city, choiceOfAction, tigerIntro, helpDef })
       .then(() => {
         this.props.history.push("/tigerview")
       })
@@ -73,50 +74,56 @@ class TigerEdit extends Component {
 
 
   render() {
+
+    console.log("profilepi", this.props.userInSession.profilePicture)
+
     return (
       <div>
         <nav className="nav-style">
-        <Link to="/tigerView" className="homeLink" style={{ textDecoration: 'none' }}>
-          <div className="logoHeader">
-            <img src="../../images/logo2Gobuddy.png" className="logo-small" />
-            <h3 className="brand-text">GoBuddy</h3>
-          </div>
+          <Link to="/tigerView" className="homeLink" style={{ textDecoration: 'none' }}>
+            <div className="logoHeader">
+              <img src="../../images/logo2Gobuddy.png" className="logo-small" />
+              <h3 className="brand-text">GoBuddy</h3>
+            </div>
           </Link>
           <div>
             <h3>/Edit Profile</h3>
           </div>
         </nav>
+        <div></div>
         <div className="content-body">
           <div className="edit-page">
             <form onSubmit={this.handleFormSubmit} className="editForm">
               <div className="editForm-containers">
                 <div className="editForm-wrapper-1">
-                  <div>
+                <Upload userPic={this.state.profilePicture} ></Upload>
+
+                  <div className="edit-name-city-wrapper">
                     <label>Username:</label>
                     <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="this.state.username" />
                     <label>City:</label>
                     <input type="text" name="city" value={this.state.city} onChange={e => this.handleChange(e)} />
                   </div>
-               
-                <div className="userSpecification editForm-wrapper-2">
-                  <h3>Do you want to update your search profile?</h3> <h3>Choose which support you are looking for...</h3>
-                  <ul className="multipleChoice">
-                    <li>
-                      <input type="checkbox" id="hangingOut" name="hangingOut" checked={this.state.choiceOfAction.includes('hangingOut')} onChange={e => this.handleChangeCheckbox(e)} />
-                      <label for="hangingOut"> hanging out (walk, showing your city, have a coffee/tea together, having a sport session together)
-                      </label>
-                    </li>
-                    <li>
-                      <input type="checkbox" id="dailyTasks" name="dailyTasks" checked={this.state.choiceOfAction.includes('dailyTasks')} onChange={e => this.handleChangeCheckbox(e)} />
-                      <label for="dailyTasks">organisation & daily tasks (grocery shopping, watering plants, German burocracy) </label>
-                    </li>
-                    <li>
-                      <input type="checkbox" id="teaching" name="teaching" checked={this.state.choiceOfAction.includes('teaching')} onChange={e => this.handleChangeCheckbox(e)} />
-                      <label for="teaching">teaching skills (tutoring, language help)
-                      </label>
-                    </li>
-                  </ul>
-                </div>
+
+                  <div className="userSpecification editForm-wrapper-2">
+                    <h3>Do you want to update your search profile?</h3> <h3>Choose which support you are looking for...</h3>
+                    <ul className="multipleChoice">
+                      <li>
+                        <input type="checkbox" id="hangingOut" name="hangingOut" checked={this.state.choiceOfAction.includes('hangingOut')} onChange={e => this.handleChangeCheckbox(e)} />
+                        <label for="hangingOut"> hanging out (walk, showing your city, have a coffee/tea together, having a sport session together)
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="dailyTasks" name="dailyTasks" checked={this.state.choiceOfAction.includes('dailyTasks')} onChange={e => this.handleChangeCheckbox(e)} />
+                        <label for="dailyTasks">organisation & daily tasks (grocery shopping, watering plants, German burocracy) </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="teaching" name="teaching" checked={this.state.choiceOfAction.includes('teaching')} onChange={e => this.handleChangeCheckbox(e)} />
+                        <label for="teaching">teaching skills (tutoring, language help)
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div className="editForm-wrapper-3">
                   <p>
@@ -140,9 +147,9 @@ class TigerEdit extends Component {
               </div>
               <button type="submit" value="Submit" className="update-Btn">Save Changes</button>
             </form>
+            <DeleteAccount logInTheUser={this.props.logInTheUser}></DeleteAccount>
           </div>
           <div>
-
           </div>
         </div>
       </div>

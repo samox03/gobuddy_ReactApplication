@@ -12,7 +12,7 @@ export default class HomePage extends Component {
           <div>
             <h1 className="front-title heading-font">Welcome to GoBuddy</h1>
           </div>
-          <div>
+          <div className="front-subtitle-wrap">
             <h2 className="front-subtitle">Become a verified Buddy and help people around you in need!
             </h2>
           </div>

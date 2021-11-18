@@ -10,6 +10,7 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
+        errorMessage: ""
     }
 
     // generic change handler for text input fields
@@ -23,15 +24,24 @@ class Login extends React.Component {
     }
 
     //class property syntax
-    submitHandler = () => {
-        axios.post('/api/user/login', { email: this.state.email, password: this.state.password }).then((resp) => {
-
-            let data = resp.data
-            //let message = data.message
-            let user = data.user
-
-            this.props.logInTheUser(user)
-        })
+    submitHandler = (event) => {
+        event.preventDefault();
+        axios.post('/api/user/login', { email: this.state.email, password: this.state.password })
+            .then((resp) => {
+                console.log("response: ", resp.data.errorMessage)
+                if (resp.data.errorMessage) {
+                    this.setState({
+                        errorMessage: resp.data.errorMessage
+                    })
+                } else {
+                    let data = resp.data
+                    //let message = data.message
+                    let user = data.user
+                    this.props.logInTheUser(user)
+                }
+            }).catch(error => {
+                console.log("error", error)
+            })
     }
 
     render() {
@@ -49,16 +59,21 @@ class Login extends React.Component {
                         <div className="header-basic">
                             <h4>Log into your account:</h4>
                         </div>
-                    
-                    <div className="login-wrapper">
 
-                        <div className="login-box">
-                            <form className="loginForm" onSubmit={this.submitHandler}>
-                                <input className="loginFormInput" type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
-                                <input className="loginFormInput" type='password' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
-                                <button>Log in</button>
-                            </form>
-                        </div>
+                        <div className="login-wrapper">
+
+                            <div className="login-box">
+                                <form className="loginForm" onSubmit={this.submitHandler}>
+                                    <input className="loginFormInput" type='text' name='email' value={this.state.email} placeholder="Username" onChange={this.changeHandler} />
+                                    <input className="loginFormInput" type='password' name='password' value={this.state.password} placeholder="Password" onChange={this.changeHandler} />
+                                    <button>Log in</button>
+                                </form>
+                                <div>
+                                    {
+                                        this.state.errorMessage && <h1 className="errorMessage">{this.state.errorMessage}</h1> 
+                               }
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>

@@ -74,55 +74,57 @@ class TigerDetails extends Component {
         <NavbarBuddy userInSession={this.props.userInSession} />
 
         <div className="content-body">
-          <div className="heading-spacer">
-            <p className="header-in-page">Share some time with {this.state.tiger.username}!</p>
-          </div>
-          <div className="grid-tiger-det">
-            {/* <div className="tiger-pic-det-box"> */}
-            <div></div>
-            <div className="tiger-det-left">
-              <div className="w-100 tiger-pic-det">
-                {
-                  this.state.tiger.profilePicture ? <img src={this.state.tiger.profilePicture} alt="" className="profile-pic-det"></img> : <img src="../../../images/profilepicPlaceholder.png" className="profile-pic-det"></img>
-                }
-              </div>
-              {/* </div> */}
-              <div className="centered-text"><p className="header-in-page-small heading-font"> Hey I am {this.state.tiger.username}! </p></div>
+          <div className="buddy-view-wrapper">
+            <div className="heading-spacer">
+              <p className="header-in-page">Share some time with {this.state.tiger.username}!</p>
             </div>
-            <div className="tiger-det-right">
-              <div className="tigerDetails-wrapper">
-                <div className="content-tiger-det">
-                  <div className="content-tiger-det">
-                    <strong>Topic:</strong>
-                  </div>
-                  {this.state.tiger.choiceOfAction?.map((action) => {
-                    return(<div>{action}</div>)
-                  })
+            <div className="grid-tiger-det">
+              {/* <div className="tiger-pic-det-box"> */}
+              <div></div>
+              <div className="tiger-det-left">
+                <div className="w-100 tiger-pic-det">
+                  {
+                    this.state.tiger.profilePicture ? <img src={this.state.tiger.profilePicture} alt="" className="profile-pic-det"></img> : <img src="../../../images/profilepicPlaceholder.png" className="profile-pic-det"></img>
                   }
-                  {/* <p>{this.state.tiger.choiceOfAction}</p> */}
+                </div>
+                {/* </div> */}
+                <div className="centered-text"><p className="header-in-page-small heading-font"> Hey I am {this.state.tiger.username}! </p></div>
+              </div>
+              <div className="tiger-det-right">
+                <div className="tigerDetails-wrapper">
                   <div className="content-tiger-det">
-                    <strong>Short Infos:</strong>
-                    <p>{this.state.tiger.profileInput.tigerIntro}</p>
-                  </div>
-                  <div className="content-tiger-det">
-                    <strong>Looking for:</strong>
-                    <p>{this.state.tiger.profileInput.helpDef}</p>
+                    <div className="content-tiger-det">
+                      <strong>Topic:</strong>
+                    </div>
+                    {this.state.tiger.choiceOfAction?.map((action) => {
+                      return (<div>{action}</div>)
+                    })
+                    }
+                    {/* <p>{this.state.tiger.choiceOfAction}</p> */}
+                    <div className="content-tiger-det">
+                      <strong>Short Infos:</strong>
+                      <p>{this.state.tiger.profileInput.tigerIntro}</p>
+                    </div>
+                    <div className="content-tiger-det">
+                      <strong>Looking for:</strong>
+                      <p>{this.state.tiger.profileInput.helpDef}</p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div></div>
             </div>
-            <div></div>
+            <div className="buttom-part-tiger-det">
+              <div>
+                <button className="basic-btn" onClick={this.startNewConversation}>
+                  Get in touch!
+                </button>
+              </div>
+              <div className="backwards-container">
+                <Link to={'/buddyView'} className="link-plain">Back to overview</Link>
+              </div>
+            </div >
           </div>
-          <div className="buttom-part-tiger-det">
-            <div>
-              <button className="basic-btn" onClick={this.startNewConversation}>
-                Get in touch!
-              </button>
-            </div>
-            <div className="backwards-container">
-              <Link to={'/buddyView'} className="link-plain">Back to overview</Link>
-            </div>
-          </div >
         </div>
       </div>
     )
