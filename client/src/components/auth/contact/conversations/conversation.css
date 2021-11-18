@@ -34,3 +34,18 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .conversation {
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 8px 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 30px;
+   width: 13em;
+   letter-spacing: 2px;
+  }
+}
