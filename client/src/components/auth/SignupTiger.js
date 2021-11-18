@@ -124,8 +124,7 @@ class SignupTiger extends React.Component {
                   </li>
                   <li>
                     <input type="checkbox" id="teaching" name="teaching" />
-                    <label for="teaching">teaching skills (tutoring, language help)
-                    </label>
+                    <label for="teaching">teaching skills (tutoring, language help) </label>
                   </li>
                 </ul>
               </div>

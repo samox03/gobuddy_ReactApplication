@@ -20,13 +20,13 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 // use session: 
-require('./configs/session-configs')(app);
+//require('./configs/session-configs')(app);
 
 
 //mongoose:
 //already preset:
 mongoose
-  .connect('mongodb://localhost/gobuddy2', { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -42,7 +42,7 @@ app.use(session({
   resave: false,
   saveUnitialized: false,
   useUnifiedTopology: true,
-  store: MongoStore.create({mongoUrl: 'mongodb://localhost/gobuddy2'})
+  store: MongoStore.create({mongoUrl: process.env.MONGODB_URI})
 }))
 
 // allow access to the API from different domains/origins

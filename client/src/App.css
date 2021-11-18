@@ -1160,6 +1160,7 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 25px;
   }
 
   .profile-det-wrapper {
@@ -1270,8 +1271,8 @@ input[type="checkbox"] {
     border-radius: 35px;
     align-items: center;
     margin: 0.8em 1em;
-    padding: 0.1em 1.5em;
-    width: 75%;
+    padding: 0.2em 1.2em;
+    width: 220px
   }
 
   .userDetails{
