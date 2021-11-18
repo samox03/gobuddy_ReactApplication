@@ -14,7 +14,6 @@
   border-right: 1px solid rgb(194, 184, 184);
   background-color: #fff;
   height: fit-content;
-  /* overflow-y: scroll; */
   display: flex;
   justify-content: center;
 }
@@ -36,7 +35,6 @@
 }
 
 .chatBox {
-  flex: 6.5;
   padding: 10px;
 }
 
@@ -139,27 +137,19 @@
   transition: 0.3s ease background;
 }
 
+.messenger{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.chatMenu{
+  width: 300px;
+}
+.chatBox{
+  width: 450px;
+}
+
 @media screen and (max-width: 768px) {
-
-  .messenger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* .chatTitle {
-    flex: 1;
-    font-size: 12px;
-    justify-content: flex-start;
-  }
-  .chatBoxTop {
-    flex: 4;
-  }
-
-  .chatBoxBottom {
-    flex: 2;
-  } */
 
   .conversation-list-wrapper {
     display: flex;
@@ -198,6 +188,7 @@
 }
 
 @media screen and (max-width: 480px) {
+
 
 
   .chatBoxTop {
