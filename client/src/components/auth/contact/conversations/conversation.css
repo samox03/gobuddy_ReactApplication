@@ -6,7 +6,7 @@
   cursor: pointer;
   margin-top: 20px;
   border-radius: 30px;
- width: 20em;
+ width: 19em;
  letter-spacing: 2px;
 
 }
@@ -38,14 +38,17 @@
 @media screen and (max-width: 480px) {
   .conversation {
     font-size: small;
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    padding: 8px 10px;
-    cursor: pointer;
-    margin-top: 15px;
-    border-radius: 30px;
-   width: 13em;
+    padding: 8px 13px;
+    margin-top: 10px;
+   width: 21em;
    letter-spacing: 2px;
+  }
+
+  .conversationImg {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
   }
 }

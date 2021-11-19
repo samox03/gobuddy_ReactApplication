@@ -17,6 +17,7 @@
   background-color: #1877f2;
   color: white;
   max-width: 400px;
+  font-size: 17px;
   /* justify-content: flex-start; */
 }
 
@@ -61,4 +62,16 @@
 display: flex;
 flex-wrap: wrap;
 margin: 0 5px
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+.messageText{
+
+  font-size: 14px;
+  /* justify-content: flex-start; */
+}
+
 }

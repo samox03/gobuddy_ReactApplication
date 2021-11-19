@@ -162,7 +162,7 @@ function Messenger(props) {
             {currentChat ? (
               <>
                 <div className="chatTitle">
-                  <h2 className="heading-font">Your conversation with {currentFriend?.username} </h2>
+                  <h2 className="heading-font heading-messenger">Your conversation with {currentFriend?.username} </h2>
                 </div>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
