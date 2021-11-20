@@ -11,12 +11,15 @@ export default class AboutUs extends Component {
         {/* show navbar depending on userstatus... also add: this.props.userInSession.usertype=='inNeed'? <NavbarTiger/>  */}
         {this.props.userInSession?.usertype == 'buddy' ? <NavbarBuddy userInSession={this.props.userInSession} /> : <NavbarFrontpage />}
         <div className="content-body">
-          <div className="header-about-page-wrapper"></div>
           <div className="header-about-page-wrapper">
             <div className="header-about-page">
-              <h3 className="about-heading">Connect</h3>
-              <h3 className="about-heading">Share &</h3>
-              <h3 className="about-heading">Raise against social inequiality</h3>
+            <div className="header-about-page-content-wrap"><h3 className="about-heading">Connect</h3>
+            <h3 className="about-heading">|</h3>
+            <h3 className="about-heading">Share</h3>
+            <h3 className="about-heading">|</h3>
+              <h3 className="about-heading">Raise</h3></div>
+             <div><h3 className="about-heading">against social inequiality</h3></div> 
+
             </div>
           </div>
 

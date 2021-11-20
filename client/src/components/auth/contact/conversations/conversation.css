@@ -29,7 +29,7 @@
   font-weight: 500;
 }
 
-@media screen and (max-width: 768px) {
+ 768px) {
   .conversationName {
     display: none;
   }

@@ -10,7 +10,7 @@ export default class HomePage extends Component {
             <img src="../../images/logo2Gobuddy.png" alt="Logo" className="logo-large" className="logo-large" />
           </div>
           <div>
-            <h1 className="front-title heading-font">Welcome to GoBuddy</h1>
+            <h1 className="front-title">Welcome to GoBuddy</h1>
           </div>
           <div className="front-subtitle-wrap">
             <h2 className="front-subtitle">Become a verified Buddy and help people around you in need!
@@ -23,7 +23,7 @@ export default class HomePage extends Component {
           </div>
           <div className="login-option-start">
            <div><p>Already have an account?</p></div> 
-            <div><Link to="/login" style={{ textDecoration: 'none' }} >Login</Link></div>
+            <div><Link to="/login" style={{ textDecoration: 'none' }} className="login-homepage">Login</Link></div>
           </div>
         </div>
         {/* <div id="bottom-page-front">

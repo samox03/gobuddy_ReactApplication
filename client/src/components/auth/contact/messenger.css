@@ -56,7 +56,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  height: calc(100vh - 50px)
+  height: calc(100vh - 90px)
 }
 
 .chatBoxTop {
@@ -156,8 +156,6 @@
 
 @media screen and (max-width: 768px) {
 
-
-
   .chatMenu{
     width: 380px;
     padding: 10px;
@@ -206,6 +204,14 @@
 }
 
 @media screen and (max-width: 480px) {
+
+.navLink{
+  font-weight: 500;
+  font-size: 12px;
+}
+.nav-link-wrapper-front{
+  padding-top: 10px;
+}
 
 
   .chatMenu {
