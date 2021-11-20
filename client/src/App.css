@@ -504,6 +504,7 @@ p {
 
 .login-box form button {
   margin-top: 20px;
+  margin-bottom: 25px;
   width: 30%;
   background-color: #ddbc2b;
   color: #fff;

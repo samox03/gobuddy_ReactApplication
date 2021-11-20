@@ -48,6 +48,13 @@ io.on("connection", (socket) => {
   //send and get message
   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
     const user = getUser(receiverId);
+    // to SOS errorhandling that if the app gets new deployed, already existing users crash the messaging as they dont have an socket.io ID untill they log in again..
+    // at least if user doesn't exist it doesn't crash the whole app
+    if (!user) {
+      console.log("ERROR: user does not exist (while trying to send message)")
+      return
+    }
+
     io.to(user.socketId).emit("getMessage", {
       senderId,
       text,
