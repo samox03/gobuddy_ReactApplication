@@ -32,12 +32,12 @@ function Messenger(props) {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null)
 
-  
+
 
   //to simplify the socket request as socket.current:
   //useRef should actually prevent that the new user gets added in loop..
-  const socket = useRef(io("ws://localhost:8900"))
-  //const socket = useRef(io())
+  //const socket = useRef(io("ws://localhost:8900"))
+  const socket = useRef(io())
 
   //optimize displaying new message in chat -> automated scrolling down.
   // const scrollRef = useRef()
@@ -152,7 +152,7 @@ function Messenger(props) {
           <div className="conversation-list-wrapper">
             {conversations.map((c) => {
               return (<div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={props.userInSession}  />
+                <Conversation conversation={c} currentUser={props.userInSession} />
               </div>)
             })}
           </div>
@@ -167,7 +167,7 @@ function Messenger(props) {
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div>
-                      <Message message={m} own={m.sender === props.userInSession._id} currentFriend={currentFriend}/>
+                      <Message message={m} own={m.sender === props.userInSession._id} currentFriend={currentFriend} />
                     </div>
                   ))}
                 </div>
