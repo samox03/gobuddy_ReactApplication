@@ -7,13 +7,7 @@ const saltRounds = 10;
 const mongoose = require('mongoose');
 
 
-//////Watch out! this is a unedited copy of the handlebars project.....
-////TO DO: 
-///// Routing: how to change routes again?
-/////
-
 //////////// S I G N U P ___buddies  ///////////
-
 
 router.post("/signup/buddy", (req, res, next) => {
   console.log("User input (buddy):", req.body);
@@ -24,16 +18,13 @@ router.post("/signup/buddy", (req, res, next) => {
   const { username, email, password1, password2, birthday, city, hangingOut, dailyTasks, teaching, } = req.body;
 
 
-  // all fields have to be filled stays untouched
-  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
   if (!username || !email || !password1 || !password2 || !birthday) {
     console.log("not all mandatory input is given..")
     res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
     return;
   }
 
-  //reducing the passwords to one
-  //still open: check if both inputs are the same
+  //checking the double passwordinput
   let password
   if (password1 === password2) {
     password = password1
@@ -50,7 +41,6 @@ router.post("/signup/buddy", (req, res, next) => {
       .json({ errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
     return;
   }
-
 
   let choiceOfAction = []
 
@@ -148,23 +138,17 @@ router.get('/tigerslist/:id', (req, res) => {
 
 router.post("/signup/tiger", (req, res, next) => {
   console.log("User input (tiger):", req.body);
-  //storing the userinput 
-
 
   //storing the userinput 
   //usertype still undefined and needs to be preset for this formvalidation 
   const { username, email, password1, password2, birthday, city, hangingOut, dailyTasks, teaching } = req.body;
 
-  // all fields have to be filled stays untouched
-  //   if (!username || !email || !password || !birthday || !choiceOfAction) {
   if (!username || !email || !password1 || !password2 || !birthday) {
     res.json({ errorMessage: 'All fields are mandatory. Please provide all required input.' })
     return;
   }
 
-
-  //reducing the passwords to one
-  //still open: check if both inputs are the same
+    //checking the double passwordinput
   let password
   if (password1 === password2) {
     password = password1
